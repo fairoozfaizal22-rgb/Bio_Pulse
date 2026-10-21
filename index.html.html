@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>BioPulse – Lab Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#070d1c;--p:#0d1730;--p2:#111d3a;--bd:#1c2b4f;--tx:#eaf0ff;--mu:#8d9bbd;--c:#22d3ee;--v:#a78bfa;--r:#fb5c7c;--g:#34d399;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.5 Manrope,system-ui,sans-serif}
+aside{position:fixed;inset:0 auto 0 0;width:250px;background:#091227;border-right:1px solid var(--bd);padding:22px 14px;display:flex;flex-direction:column;gap:4px;overflow:auto}
+.logo{display:flex;gap:10px;align-items:center;margin:0 8px 22px}.logo i{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--c),var(--v));display:grid;place-items:center;font-style:normal;font-weight:800;color:#06101f}
+.logo b{font-size:19px;display:block;line-height:1.1}.logo small{color:var(--mu);font-size:11px}
+nav a{display:block;padding:10px 14px;border-radius:10px;color:var(--mu);text-decoration:none;font-weight:500;cursor:pointer}
+nav a:hover{color:var(--tx)}nav a.on{background:var(--p2);color:var(--tx);box-shadow:inset 3px 0 var(--c)}
+.priv{margin-top:auto;font-size:12px;color:var(--mu);border:1px solid var(--bd);border-radius:10px;padding:10px}
+main{margin-left:250px;padding:40px 48px;max-width:1200px}
+h1{font-size:38px;margin:0 0 6px;letter-spacing:-.02em}h2{font-size:20px;margin:0 0 12px}
+.sub{color:var(--mu);max-width:640px;margin:0 0 26px}
+.card{background:var(--p);border:1px solid var(--bd);border-radius:16px;padding:22px;margin-bottom:18px}
+.hero{padding:44px;background:linear-gradient(135deg,#0e1b3d,#0a1226 60%);position:relative;overflow:hidden}
+.hero h1{font-size:54px;line-height:1.05}.hero .g{background:linear-gradient(90deg,var(--c),var(--v));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero svg{position:absolute;right:30px;top:20px;width:300px;opacity:.9}
+.grid{display:grid;gap:16px}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:1fr 1fr}
+.stat b{display:block;font-size:34px;margin-top:6px}.stat span{color:var(--mu);font-size:13px}
+button,.btn{font:600 14px Manrope,sans-serif;border:1px solid var(--bd);background:var(--p2);color:var(--tx);padding:10px 18px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block}
+.pri{background:linear-gradient(90deg,var(--c),#3b82f6);color:#04101f;border:0}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--c)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--bd)}.row:first-child{border-top:0}
+.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;border:1px solid}
+.HIGH,.LOW{color:var(--r);border-color:#5b2438;background:#2a1220}.OK{color:var(--g);border-color:#17493b;background:#0e2a26}
+.smp{color:var(--mu);border-color:var(--bd);margin-left:6px}
+.rep{display:flex;gap:16px;align-items:center;cursor:pointer;padding:16px;border:1px solid var(--bd);border-radius:14px;margin-bottom:12px;background:var(--p)}
+.rep:hover{border-color:#2e4478}.dt{width:54px;text-align:center;border:1px solid var(--bd);border-radius:10px;padding:6px;font-weight:800}.dt small{display:block;color:var(--mu);font-size:10px}
+input,select,textarea{width:100%;background:#0a1329;border:1px solid var(--bd);color:var(--tx);border-radius:10px;padding:11px 13px;font:inherit}
+label{font-size:12px;color:var(--mu);display:block;margin:12px 0 5px;font-weight:600}
+.drop{border:1.5px dashed #2a3d6c;border-radius:14px;padding:44px 20px;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{padding:7px 14px;border-radius:99px;font-size:13px}.chip.on{background:#0e3440;color:var(--c);border-color:#17586b}
+table{width:100%;border-collapse:collapse}td,th{padding:10px 8px;border-top:1px solid var(--bd);text-align:left;font-size:14px}th{color:var(--mu);font-size:12px;border:0}
+td input{padding:6px 8px;width:90px}
+.mu{color:var(--mu)}.hide{display:none}.det{padding:8px 0 4px;color:var(--mu);font-size:14px}
+.pick{display:flex;justify-content:space-between;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;cursor:pointer}.pick.on{border-color:var(--c);background:#0c2434}
+.foot{color:var(--mu);font-size:12px;border-top:1px solid var(--bd);margin-top:40px;padding-top:16px}
+#toast{position:fixed;bottom:24px;right:24px;background:var(--c);color:#04101f;padding:12px 18px;border-radius:10px;font-weight:700;display:none;z-index:9}
+@media(max-width:860px){aside{position:static;width:auto;flex-direction:row;flex-wrap:wrap;padding:12px}.logo,.priv{display:none}main{margin:0;padding:22px 16px}.g4,.g2{grid-template-columns:1fr 1fr}.hero{padding:24px}.hero h1{font-size:34px}.hero svg{display:none}}
+@media(max-width:520px){.g4,.g2{grid-template-columns:1fr}}
+@media print{aside,.noprint{display:none}main{margin:0}body{background:#fff;color:#000}.card{border-color:#ccc;background:#fff}.mu,.sub{color:#444}}
+</style></head><body>
+<aside><div class="logo"><i>B</i><div><b>BioPulse</b><small>Lab Intelligence</small></div></div>
+<nav id="nav"></nav><div class="priv">Reports are saved in this browser on your device only.</div></aside>
+<main id="v"></main><div id="toast"></div>
+<script>
+const CATS={cbc:'Complete Blood Count',met:'Metabolic & Diabetes',lip:'Lipid Profile',liv:'Liver Function',kid:'Kidney Function',thy:'Thyroid',vit:'Vitamins & Minerals',inf:'Inflammation'};
+const CD={cbc:'Counts and sizes of the cells in your blood: oxygen carriers, infection fighters and clotting cells.',met:'Shows how your body handles sugar over the short and long term.',lip:'Fats in your blood that relate to heart and artery health.',liv:'Enzymes and proteins released or made by the liver.',kid:'Waste products the kidneys filter out of your blood.',thy:'Hormones that set how fast your body uses energy.',vit:'Vitamins and minerals your body needs from food or sunlight.',inf:'A general marker that rises when the body is inflamed.'};
+// k:[abbr,name,cat,unit,lo,hi,regex]
+const C={HGB:['HGB','Hemoglobin','cbc','g/dL',12,17,'hemoglobin|\\bHb\\b|\\bHGB'],RBC:['RBC','Red Blood Cell Count','cbc','million/µL',4.5,5.9,'red blood|\\bRBC'],WBC:['WBC','White Blood Cell Count','cbc','10³/µL',4,11,'white blood|\\bWBC|\\bTLC'],PLT:['PLT','Platelet Count','cbc','10³/µL',150,450,'platelet'],HCT:['HCT','Hematocrit','cbc','%',40,52,'hematocrit|\\bHCT|\\bPCV'],MCV:['MCV','MCV','cbc','fL',80,100,'\\bMCV'],
+GLU:['GLU','Fasting Blood Glucose','met','mg/dL',70,99,'glucose'],HBA1C:['A1C','HbA1c','met','%',4,5.6,'HbA1c|\\bA1c'],
+CRE:['CRE','Creatinine','kid','mg/dL',.6,1.3,'creat?inine'],BUN:['BUN','Blood Urea Nitrogen','kid','mg/dL',7,20,'urea nitrogen|\\bBUN'],EGFR:['EGFR','eGFR','kid','mL/min/1.73m²',90,200,'eGFR'],UA:['UA','Uric Acid','kid','mg/dL',3.4,7,'uric acid'],
+TC:['TC','Total Cholesterol','lip','mg/dL',0,200,'total cholesterol'],LDL:['LDL','LDL Cholesterol','lip','mg/dL',0,100,'\\bLDL'],HDL:['HDL','HDL Cholesterol','lip','mg/dL',40,999,'\\bHDL'],TG:['TG','Triglycerides','lip','mg/dL',0,150,'triglyceride'],
+ALT:['ALT','ALT (SGPT)','liv','U/L',7,56,'\\bALT|SGPT'],AST:['AST','AST (SGOT)','liv','U/L',10,40,'\\bAST|SGOT'],ALB:['ALB','Albumin','liv','g/dL',3.5,5.2,'albumin'],
+TSH:['TSH','TSH','thy','mIU/L',.4,4,'\\bTSH'],FT4:['FT4','Free T4','thy','ng/dL',.8,1.8,'free t4|\\bFT4'],
+VITD:['VIT','Vitamin D (25-OH)','vit','ng/mL',30,100,'vitamin\\s*D(?:\\s*\\(25-?OH\\))?'],B12:['B12','Vitamin B12','vit','pg/mL',200,900,'vitamin\\s*B12|\\bB12'],FER:['FER','Ferritin','vit','ng/mL',30,400,'ferritin'],CA:['CA','Serum Calcium','vit','mg/dL',8.5,10.5,'calcium'],FE:['FE','Serum Iron','vit','µg/dL',60,170,'\\biron'],
+CRP:['CRP','C-Reactive Protein','inf','mg/L',0,3,'c-?reactive|\\bCRP']};
+const SV={HGB:[14.2,14,13.8],RBC:[5,4.9,5.1],WBC:[6.5,7.2,7],PLT:[250,260,240],HCT:[44,45,43],MCV:[90,89,91],GLU:[92,98,104],HBA1C:[5.4,5.6,5.8],CRE:[.9,1,1],BUN:[14,15,16],EGFR:[105,102,100],UA:[5.5,6,6.4],TC:[190,205,218],LDL:[105,108,112],HDL:[48,46,44],TG:[140,160,178],ALT:[32,38,62],AST:[26,29,41],ALB:[4.4,4.3,4.4],TSH:[2.1,2.4,2.6],VITD:[24,28,34],B12:[310,330,350],CRP:[2.2,1.8,3.4]};
+const SAMP=[['Annual Health Check','City Diagnostics','2026-02-12'],['Lipid & Vitamin Follow-up','Apollo Labs','2026-06-08'],['Quarterly Review Panel','City Diagnostics','2026-10-05']];
+const mk=i=>({id:'s'+i,title:SAMP[i][0],lab:SAMP[i][1],date:SAMP[i][2],sample:1,items:Object.keys(SV).map(k=>({k,v:SV[k][i]}))});
+let R=[],P={},sel=['ALT','AST'],draft=null,q='',gcat='all',gopen={};
+try{R=JSON.parse(localStorage.getItem('bp_r')||'null');P=JSON.parse(localStorage.getItem('bp_p')||'{}')}catch(e){}
+if(!Array.isArray(R)){R=[mk(0),mk(1),mk(2)]}
+const save=()=>{try{localStorage.setItem('bp_r',JSON.stringify(R));localStorage.setItem('bp_p',JSON.stringify(P))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fd=d=>new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+const fl=(k,v)=>v<C[k][4]?'LOW':v>C[k][5]?'HIGH':'OK';
+const bad=r=>r.items.filter(i=>fl(i.k,i.v)!='OK');
+const sorted=()=>[...R].sort((a,b)=>b.date.localeCompare(a.date));
+const tag=s=>`<span class="tag ${s}">${s=='OK'?'IN RANGE':s}</span>`;
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200)};
+const pages={dashboard:'Dashboard',upload:'Upload Report',reports:'My Reports',trends:'Trends',glossary:'Lab Glossary',profile:'Health Profile',about:'Project'};
+function chart(keys){
+ const dates=sorted().reverse().filter(r=>keys.some(k=>r.items.find(i=>i.k==k)));
+ if(!dates.length)return'<p class="mu">No data yet.</p>';
+ const W=700,H=280,m=50,cols=['#22d3ee','#a78bfa','#fbbf24'],one=keys.length==1;
+ const val=(k,v)=>one?v:v/((C[k][4]+Math.min(C[k][5],C[k][4]*3+100))/2||1)*100;
+ let ser=keys.map(k=>dates.map(r=>{const i=r.items.find(x=>x.k==k);return i?val(k,i.v):null}));
+ let all=ser.flat().filter(x=>x!=null);if(one){all.push(C[keys[0]][4],Math.min(C[keys[0]][5],C[keys[0]][5]))}
+ let lo=Math.min(...all),hi=Math.max(...all),pad=(hi-lo||1)*.15;lo-=pad;hi+=pad;
+ const X=i=>m+(dates.length>1?i/(dates.length-1):.5)*(W-m*2),Y=v=>H-m-(v-lo)/(hi-lo)*(H-m*2);
+ let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%">`;
+ for(let i=0;i<5;i++){const v=lo+(hi-lo)*i/4;s+=`<line x1="${m}" x2="${W-m}" y1="${Y(v)}" y2="${Y(v)}" stroke="#1c2b4f"/><text x="${m-8}" y="${Y(v)+4}" fill="#8d9bbd" font-size="11" text-anchor="end">${v.toFixed(one?1:0)}</text>`}
+ if(one){const c=C[keys[0]];const a=Math.max(c[4],lo),b=Math.min(c[5],hi);if(b>a)s+=`<rect x="${m}" width="${W-m*2}" y="${Y(b)}" height="${Y(a)-Y(b)}" fill="#34d399" opacity=".12"/>`}
+ dates.forEach((r,i)=>s+=`<text x="${X(i)}" y="${H-14}" fill="#8d9bbd" font-size="11" text-anchor="middle">${fd(r.date).slice(0,6)}</text>`);
+ ser.forEach((a,j)=>{const pts=a.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+  s+=`<polyline fill="none" stroke="${cols[j]}" stroke-width="3" points="${pts.map(p=>p.join(',')).join(' ')}"/>`+pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="${cols[j]}"/>`).join('')});
+ return s+'</svg>'+(one?'<small class="mu">Green band = reference range</small>':'<small class="mu">Multiple series are shown as % of each reference midpoint so different units can be compared.</small>')+
+ `<div style="margin-top:8px">${keys.map((k,j)=>`<span style="color:${cols[j]};margin-right:14px">● ${C[k][1]}</span>`).join('')}</div>`}
+const views={
+dashboard(){const rs=sorted(),L=rs[0],all=R.reduce((n,r)=>n+r.items.length,0),out=R.reduce((n,r)=>n+bad(r).length,0),fk=L?bad(L).slice(0,5):[];
+ return`<div class="card hero"><svg viewBox="0 0 300 300"><g fill="none" stroke="#22d3ee" opacity=".5"><circle cx="150" cy="150" r="110"/><circle cx="150" cy="150" r="70"/><path d="M60 80Q150 150 240 80M60 220Q150 150 240 220"/></g><g fill="#a78bfa"><circle cx="150" cy="150" r="14" fill="#cffafe"/><circle cx="60" cy="80" r="6"/><circle cx="240" cy="80" r="6"/><circle cx="60" cy="220" r="6" fill="#22d3ee"/><circle cx="240" cy="220" r="6" fill="#22d3ee"/></g></svg>
+ <p class="mu">Welcome back${P.name?', '+esc(P.name):''}</p><h1>Your health.<br><span class="g">Connected.<br>Understood.</span></h1><p class="sub">Bring your lab reports together and watch every measurement change over time, with the numbers that need attention shown first.</p>
+ <a class="btn pri" href="#upload">Upload a report</a> <a class="btn" href="#trends">Explore trends</a></div>
+ <div class="grid g4"><div class="card stat"><span>Reports stored</span><b>${R.length}</b><span>${L?'Latest '+fd(L.date):'None yet'}</span></div><div class="card stat"><span>Measurements</span><b>${all}</b><span>Across all reports</span></div><div class="card stat"><span>Out of range</span><b>${out}</b><span>Flagged against reference ranges</span></div><div class="card stat"><span>Latest panel</span><b>${L?L.items.length:0}</b><span>${L?esc(L.lab):'–'}</span></div></div>
+ ${L?`<div class="grid g2"><div class="card"><h2>Needs attention</h2><p class="mu" style="margin-top:-8px">From ${esc(L.title)}</p>${fk.map(i=>`<div class="row"><div><b>${C[i.k][1]}</b><br><span class="mu">${i.v} ${C[i.k][3]} · ref ${C[i.k][4]}–${C[i.k][5]}</span></div>${tag(fl(i.k,i.v))}</div>`).join('')||'<p class="mu">Everything is in range.</p>'}</div>
+ <div class="card"><h2>${fk[0]?C[fk[0].k][1]:'Trend'}</h2>${chart([fk[0]?fk[0].k:'HGB'])}</div></div>`:''}
+ <h2>Recent reports</h2>${rs.slice(0,3).map(repRow).join('')||'<p class="mu">Upload your first report to begin.</p>'}`},
+upload(){return`<h1>Upload report</h1><p class="sub">Paste the text of a lab report. BioPulse finds each known measurement, compares it with its reference range and lets you review everything before saving.</p>
+ ${draft?review():`<div class="grid g2"><div class="card"><div class="drop"><p><b>Paste report text</b></p><textarea id="pt" rows="9" placeholder="Hemoglobin 13.8 g/dL&#10;ALT (SGPT) 62 U/L&#10;LDL Cholesterol 112 mg/dL"></textarea><p><button class="pri" onclick="doParse()">Read measurements</button> <label class="btn" style="margin:0;color:var(--tx)">Open .txt / .csv<input type="file" accept=".txt,.csv" class="hide" onchange="fileIn(this)"></label></p><small class="mu">PDF and image OCR needs a server, so it is not included here. Paste the text instead.</small></div></div>
+ <div class="card"><h2>Try a sample report</h2>${SAMP.map((s,i)=>`<div class="rep" onclick="loadS(${i})"><div><b>${s[0]}</b><br><span class="mu">${s[1]} · ${fd(s[2])}</span></div></div>`).join('')}</div></div>`}`},
+reports(){const f=q.toLowerCase();const rs=sorted().filter(r=>(r.title+r.lab+fd(r.date)).toLowerCase().includes(f));
+ return`<h1>My reports</h1><p class="sub">Every report you added, newest first. Open one to review each measurement or print a PDF copy.</p><div class="grid g2" style="margin-bottom:16px"><input placeholder="Search by title, lab or date" value="${esc(q)}" oninput="q=this.value;go(true)" id="qs"><div><a class="btn pri" href="#upload">Add report</a></div></div>${rs.map(repRow).join('')||'<p class="mu">No reports match.</p>'}`},
+trends(){const rows=Object.keys(C).filter(k=>R.some(r=>r.items.some(i=>i.k==k)));
+ return`<h1>Trends</h1><p class="sub">Pick up to three measurements to compare across your reports.</p><div class="grid" style="grid-template-columns:300px 1fr"><div class="card" style="max-height:640px;overflow:auto"><p class="mu">${sel.length} of 3 selected</p>${rows.map(k=>`<div class="pick ${sel.includes(k)?'on':''}" onclick="tg('${k}')"><span><b>${C[k][1]}</b><br><small class="mu">${CATS[C[k][2]]}</small></span></div>`).join('')}</div>
+ <div><div class="card"><h2>Measurement over time</h2>${chart(sel)}</div>${sel.map(k=>{const h=sorted().map(r=>({r,i:r.items.find(i=>i.k==k)})).filter(x=>x.i),l=h[0],ch=h.length>1?+(l.i.v-h[h.length-1].i.v).toFixed(2):0;
+ return`<div class="card"><div class="row" style="border:0"><h2>${C[k][1]}</h2>${tag(fl(k,l.i.v))}</div><div class="grid g4" style="grid-template-columns:repeat(3,1fr)"><div><span class="mu">Latest</span><br><b style="font-size:26px">${l.i.v}</b> ${C[k][3]}</div><div><span class="mu">Change</span><br><b style="font-size:26px">${ch>0?'+':''}${ch}</b></div><div><span class="mu">Reference</span><br><b>${C[k][4]}–${C[k][5]}</b></div></div>${h.map(x=>`<div class="row"><span class="mu">${fd(x.r.date)}</span><span>${x.i.v} ${C[k][3]} ${tag(fl(k,x.i.v))}</span></div>`).join('')}</div>`}).join('')}</div></div>`},
+glossary(){const f=q.toLowerCase(),ks=Object.keys(C).filter(k=>(gcat=='all'||C[k][2]==gcat)&&(C[k][1]+C[k][0]+k).toLowerCase().includes(f));
+ return`<h1>Lab glossary</h1><p class="sub">Plain-language notes on the measurements found on most lab reports.</p><input placeholder="Search a test or abbreviation" value="${esc(q)}" oninput="q=this.value;go(true)" id="qs"><div class="chips"><button class="chip ${gcat=='all'?'on':''}" onclick="gcat='all';go(true)">All</button>${Object.entries(CATS).map(([k,v])=>`<button class="chip ${gcat==k?'on':''}" onclick="gcat='${k}';go(true)">${v}</button>`).join('')}</div><p class="mu">${ks.length} measurements</p>
+ ${ks.map(k=>`<div class="card" style="padding:14px 18px;cursor:pointer" onclick="gopen['${k}']=!gopen['${k}'];go(true)"><div class="row" style="border:0;padding:0"><span><b>${C[k][1]}</b> <small class="mu">${CATS[C[k][2]]}</small></span><span class="mu">${C[k][4]}–${C[k][5]} ${C[k][3]}</span></div>${gopen[k]?`<div class="det">${CD[C[k][2]]} Reference ranges differ between laboratories, so check the range printed on your own report.</div>`:''}</div>`).join('')}`},
+profile(){const bmi=P.h&&P.w?(P.w/((P.h/100)**2)).toFixed(1):'–';
+ const f=(id,l,t='text',ph='')=>`<div><label>${l}</label><input id="p_${id}" type="${t}" placeholder="${ph}" value="${esc(P[id]||'')}"></div>`;
+ return`<h1>Health profile</h1><p class="sub">Background that gives your results meaning. It stays in this browser.</p><div class="grid" style="grid-template-columns:2fr 1fr"><div class="card"><div class="grid g2">${f('name','Full name')}${f('email','Email','email')}${f('dob','Date of birth','date')}${f('blood','Blood group','text','e.g. O+')}${f('h','Height (cm)','number','e.g. 172')}${f('w','Weight (kg)','number','e.g. 68')}</div>${f('cond','Ongoing conditions or medications')}${f('alg','Known allergies','text','e.g. penicillin, dust')}<p><button class="pri" onclick="saveP()">Save profile</button></p></div>
+ <div class="card"><h2>Body mass index</h2><b style="font-size:40px">${bmi}</b><p class="mu">Calculated from height and weight. BMI is a rough screening measure and ignores body composition.</p></div></div>`},
+about(){return`<h1>About BioPulse</h1><p class="sub">Bridging the gap between complex clinical lab reports and patient understanding.</p><div class="card"><h2>Problem</h2><p>Medical records end up scattered across paper, email and clinic portals. Labs use different layouts, units and reference ranges, which makes tracking over time hard and a single unfamiliar number difficult to interpret.</p></div>
+ <div class="grid g4"><div class="card"><h2>Centralise</h2><p class="mu">One place for every lab report.</p></div><div class="card"><h2>Extract</h2><p class="mu">Reads printed measurements into structured records.</p></div><div class="card"><h2>Understand</h2><p class="mu">Compares against ranges and charts trends.</p></div><div class="card"><h2>Protect</h2><p class="mu">Data stays on your device in this version.</p></div></div>
+ <div class="card"><h2>From document to insight</h2><ol><li>Paste a lab report’s text</li><li>BioPulse reads each measurement and unit</li><li>Each value is matched to its reference range</li><li>You review, confirm, then track it over time</li></ol><a class="btn" href="#upload">Try the workflow</a></div>
+ <div class="card"><h2>Scope</h2><p class="mu">This is an educational demonstration. It does not claim production OCR, clinical interpretation or encryption.</p></div>`}};
+function repRow(r){return`<div class="rep" onclick="location.hash='r-${r.id}'"><div class="dt">${new Date(r.date).getDate()}<small>${fd(r.date).slice(3,6).toUpperCase()}</small></div><div style="flex:1"><b>${esc(r.title)}</b>${r.sample?'<span class="tag smp">SAMPLE</span>':''}<br><span class="mu">${esc(r.lab)} · ${fd(r.date)}</span><br><span class="mu">${r.items.length} values · </span>${bad(r).length?`<span class="tag HIGH">${bad(r).length} out of range</span>`:'<span class="tag OK">all in range</span>'}</div><button onclick="event.stopPropagation();del('${r.id}')">Delete</button></div>`}
+function detail(id){const r=R.find(x=>x.id==id);if(!r)return'<p>Report not found.</p>';
+ return`<a class="btn noprint" href="#reports">Back</a> <button class="noprint" onclick="window.print()">Export PDF</button><h1 style="margin-top:18px">${esc(r.title)}</h1><p class="sub">${esc(r.lab)} · ${fd(r.date)} · ${bad(r).length} of ${r.items.length} out of range</p><div class="card"><table><tr><th>Measurement</th><th>Value</th><th>Reference</th><th>Status</th></tr>${r.items.map(i=>`<tr><td>${C[i.k][1]}</td><td>${i.v} ${C[i.k][3]}</td><td class="mu">${C[i.k][4]}–${C[i.k][5]}</td><td>${tag(fl(i.k,i.v))}</td></tr>`).join('')}</table></div>`}
+function review(){const d=draft;return`<div class="card"><h2>Review before saving</h2><div class="grid g2"><div><label>Title</label><input id="d_t" value="${esc(d.title)}"></div><div><label>Lab</label><input id="d_l" value="${esc(d.lab)}"></div><div><label>Report date</label><input id="d_d" type="date" value="${d.date}"></div></div>
+ <table><tr><th>Measurement</th><th>Value</th><th>Reference</th><th>Status</th><th></th></tr>${d.items.map((i,n)=>`<tr><td>${C[i.k][1]}</td><td><input type="number" step="any" value="${i.v}" onchange="draft.items[${n}].v=parseFloat(this.value);go(true)"> ${C[i.k][3]}</td><td class="mu">${C[i.k][4]}–${C[i.k][5]}</td><td>${tag(fl(i.k,i.v))}</td><td><button onclick="draft.items.splice(${n},1);go(true)">Remove</button></td></tr>`).join('')}</table>
+ <p><button class="pri" onclick="confirmD()">Confirm and save</button> <button onclick="draft=null;go(true)">Cancel</button></p></div>`}
+function parse(t){const out=[];for(const k in C){const m=t.match(new RegExp('(?:'+C[k][6]+')[^\\d\\n]{0,28}(\\d+(?:\\.\\d+)?)','i'));if(m)out.push({k,v:parseFloat(m[1])})}return out}
+function doParse(){const t=document.getElementById('pt').value,it=parse(t);if(!it.length)return toast('No known measurements found. Check the pasted text.');draft={title:'Uploaded report',lab:'',date:new Date().toISOString().slice(0,10),items:it};go(true)}
+function fileIn(el){const f=el.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{document.getElementById('pt').value=rd.result;doParse()};rd.readAsText(f)}
+function loadS(i){const s=mk(i);draft={title:s.title,lab:s.lab,date:s.date,items:s.items};go(true)}
+function confirmD(){draft.title=document.getElementById('d_t').value||'Untitled report';draft.lab=document.getElementById('d_l').value||'Unknown lab';draft.date=document.getElementById('d_d').value||draft.date;R.push({id:'u'+Date.now(),title:draft.title,lab:draft.lab,date:draft.date,items:draft.items});draft=null;save();toast('Saved');location.hash='reports'}
+function del(id){if(confirm('Delete this report?')){R=R.filter(r=>r.id!=id);save();go(true)}}
+function tg(k){const i=sel.indexOf(k);if(i>=0){if(sel.length>1)sel.splice(i,1)}else{if(sel.length>=3)sel.shift();sel.push(k)}go(true)}
+function saveP(){['name','email','dob','blood','h','w','cond','alg'].forEach(k=>P[k]=document.getElementById('p_'+k).value);save();toast('Profile saved');go(true)}
+function go(keep){let h=location.hash.slice(1)||'dashboard',v=document.getElementById('v'),fo=document.activeElement&&document.activeElement.id;
+ document.getElementById('nav').innerHTML=Object.entries(pages).map(([k,l])=>`<a href="#${k}" class="${h==k||(h[0]=='r'&&h[1]=='-'&&k=='reports')?'on':''}">${l}</a>`).join('');
+ if(!keep){q='';window.scrollTo(0,0)}
+ v.innerHTML=(h.startsWith('r-')?detail(h.slice(2)):(views[h]||views.dashboard)())+'<p class="foot">BioPulse is an educational demonstration of lab-report tracking. It does not provide medical advice or diagnosis. Reference ranges vary between laboratories, so always confirm results with a qualified clinician.</p>';
+ if(fo==='qs'){const e=document.getElementById('qs');if(e){e.focus();e.setSelectionRange(99,99)}}}
+let lastH;window.addEventListener('hashchange',()=>go(false));go(false);
+</script></body></html>
